@@ -23,17 +23,25 @@ const VideoDetail = () => {
     );
   }, [id]);
 
+  const handleVideoClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   if (!videoDetail) return <Loader />;
   return (
     <Box minHeight="95vh" p={1}>
       <Stack direction={{ xs: "column", md: "row" }}>
         <Box flex={1}>
           <Box sx={{ width: "100%", position: "sticky", top: "86px" }}>
-            <ReactPlayer
-              url={`https://www.youtube.com/watch?v=${id}`}
-              className="react-player"
-              controls
-            />
+            <div onClick={handleVideoClick}>
+              <ReactPlayer
+                url={`https://www.youtube.com/watch?v=${id}`}
+                className="react-player"
+                controls
+                playing={true}
+                onPlay={handleVideoClick}
+              />
+            </div>
             <Typography
               color="white"
               variant="h6"
